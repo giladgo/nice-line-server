@@ -1,6 +1,8 @@
 require 'data_mapper'
 
-DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/lines.db")
+db_url = ENV['HEROKU_POSTGRESQL_JADE_URL'] || ENV['NICE_LINE_POSTGRES_URL']
+
+DataMapper::setup(:default, db_url)
 
 class Line
   include DataMapper::Resource
